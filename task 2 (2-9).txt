@@ -1,0 +1,60 @@
+CREATE DATABASE Library;
+USE Library;
+
+
+CREATE TABLE Books (
+BookID INT PRIMARY KEY,
+Title VARCHAR(50) UNIQUE,
+AuthorID INT FOREIGN KEY (AuthorID) REFERENCES Authors(AuthorID),
+PublishedYear INT NOT NULL,
+CopiesAvailable INT ,
+BookCategory VARCHAR(50) NOT NULL,
+);
+
+CREATE TABLE Authors (
+AuthorID INT PRIMARY KEY ,
+FirstName VARCHAR(50) NOT NULL ,
+LastName VARCHAR(50) NOT NULL,
+BirthYear INT,
+);
+
+INSERT INTO Books (BookID,Title,AuthorID,PublishedYear,CopiesAvailable,BookCategory)
+VALUES (1,'Jane Eyre',1,1847,5,'classics');
+INSERT INTO Books (BookID,Title,AuthorID,PublishedYear,CopiesAvailable,BookCategory)
+VALUES (2,'Pride and Prejudice',2,1813,8,'classics');
+INSERT INTO Books (BookID,Title,AuthorID,PublishedYear,CopiesAvailable,BookCategory)
+VALUES (3,'Little Women',3,1868,10,'classics');
+INSERT INTO Books (BookID,Title,AuthorID,PublishedYear,CopiesAvailable,BookCategory)
+VALUES (4,'The Great Gatsby',4,1925,4,'classics');
+INSERT INTO Books (BookID,Title,AuthorID,PublishedYear,CopiesAvailable,BookCategory)
+VALUES (5,'Things Fall Apart',5,1958,6,'classics');
+
+
+INSERT INTO Authors(AuthorID,FirstName,LastName,BirthYear)
+VALUES (1,'Charlotte','Brontë',1840);
+INSERT INTO Authors(AuthorID,FirstName,LastName,BirthYear)
+VALUES (2,'Jane','Austen',1800);
+INSERT INTO Authors(AuthorID,FirstName,LastName,BirthYear)
+VALUES (3,'Louisa','Alcott',1840);
+INSERT INTO Authors(AuthorID,FirstName,LastName,BirthYear)
+VALUES (4,'Scott','Fitzgerald',1840);
+INSERT INTO Authors(AuthorID,FirstName,LastName,BirthYear)
+VALUES (5,'Chinua','Achebe',1840);
+
+
+SELECT * FROM Books
+
+SELECT * FROM Authors
+
+SELECT MAX(CopiesAvailable) FROM Books ;
+SELECT MIN(CopiesAvailable) FROM Books ;
+SELECT AVG(PublishedYear) FROM Books ;
+SELECT SUM(CopiesAvailable) FROM Books;
+
+
+TRUNCATE TABLE Books ;
+
+ALTER TABLE Authors ADD Email VARCHAR(50);
+ALTER TABLE Authors ADD Phone_Number INT;
+
+DROP TABLE Authors;
